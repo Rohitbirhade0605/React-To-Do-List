@@ -7,4 +7,5 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
   ],
+  base: "/React-To-Do-List"
 })
