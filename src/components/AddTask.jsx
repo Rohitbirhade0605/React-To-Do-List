@@ -10,7 +10,11 @@ setTaskValue(e.target.value);
 
 const handleClickAdd = ()=> {
     if (taskValue.trim() && addToDo.length <= 6) {
-      setAddToDo([...addToDo, taskValue.trim()]);
+      const newTask = {
+        id: Date.now() + Math.random(), // Create unique ID
+        text: taskValue.trim()
+      };
+      setAddToDo([...addToDo, newTask]);
       setTaskValue('');
     } else if (taskValue.trim()) {
          setTaskValue("You've reached the limit. Remove a task to add another.");

@@ -29,10 +29,9 @@ const App = () => {
 
     {/* Mapped UseState to render Task Component */}
      {addToDo.map((task, index) => (
-     <Task key={index} index={index} taskValue={task} setTaskValue={setTaskValue} addToDo={addToDo} setAddToDo={setAddToDo} />   ))}         
+     <Task key={task.id} index={index} taskId={task.id} taskValue={task.text} setTaskValue={setTaskValue} addToDo={addToDo} setAddToDo={setAddToDo} />   ))}         
     </>
     )
 }
 
 export default App
-

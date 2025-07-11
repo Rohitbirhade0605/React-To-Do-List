@@ -9,7 +9,7 @@ import { IoCheckmarkCircle } from "react-icons/io5";
 import { MdOutlineFileDownloadDone } from "react-icons/md";
 
 
-const Tasks = ({taskValue, setTaskValue, addToDo, setAddToDo, index}) => {
+const Tasks = ({taskValue, setTaskValue, addToDo, setAddToDo, index, taskId}) => {
 
 
 const [isEditing, setIsEditing] = useState(false);
@@ -31,7 +31,7 @@ const handleEdit = ()=> {
 const handleSave = () => {
   if (editValue.trim()) {
      const newTasks = [...addToDo];
-     newTasks[index] = editValue.trim();
+     newTasks[index] = { ...newTasks[index], text: editValue.trim() };
      setAddToDo(newTasks);
      setIsEditing(false);
   };
@@ -44,14 +44,14 @@ const handleKeys = (e) => {
      setIsEditing(false);
   }
 
-  if (e.key === 'Enter') {s
+  if (e.key === 'Enter') {
       handleSave();
   }
 };
 
 
-const handleDelete = (index)=> {
- setAddToDo( (prev) => prev.filter((_,i) => i !== index ));
+const handleDelete = (taskId)=> {
+ setAddToDo( (prev) => prev.filter((task) => task.id !== taskId ));
  setTaskValue('');
 };
 
@@ -86,7 +86,7 @@ return (
           ) : <button onClick={handleEdit}>  <TbEdit className='inline stroke-gray-500 h-5.5 w-5.5 mr-2 cursor-pointer'/>  </button> }
           
            {/* Handle Delete */}
-          <button onClick={ ()=> handleDelete(index)}> <RiDeleteBinLine className='inline fill-red-500 h-5.5 w-5.5 cursor-pointer' /> </button>
+          <button onClick={ ()=> handleDelete(taskId)}> <RiDeleteBinLine className='inline fill-red-500 h-5.5 w-5.5 cursor-pointer' /> </button>
 
         </div>
 
